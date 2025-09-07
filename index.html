@@ -1,5 +1,34 @@
 <!doctype html>
-<meta charset="utf-8">
-<title>EasyMaths</title>
-<h1>EasyMaths</h1>
-<p><a href="/guide">Get the Free Maths Guide</a> · <a href="/book">Book Tutoring</a></p>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>EasyMaths</title>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-G-ELDT32P8F1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-ELDT32P8F1');
+  </script>
+
+  <script>
+    // Look for ?src=poster1 etc
+    const urlParams = new URLSearchParams(window.location.search);
+    const src = urlParams.get('src');
+
+    if (src) {
+      gtag('event', 'qr_scan', {
+        'poster': src
+      });
+    }
+  </script>
+</head>
+<body>
+  <h1>EasyMaths</h1>
+  <p><a href="/guide">Get the Free Maths Guide</a> · <a href="/book">Book Tutoring</a></p>
+</body>
+</html>
+
+
