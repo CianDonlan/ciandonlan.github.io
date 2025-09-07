@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>EasyMaths – Guide</title>
+
+  <!-- 1) GA tag -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-ELDT32P8F1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-ELDT32P8F1'); // your real ID
+  </script>
+
+  <script>
+    // 2) Configure per poster:
+    const POSTER = 'poster1'; // change to poster2 / poster3 on the other pages
+    const TALLY_URL = 'https://tally.so/r/your-form-id'; // put your actual Tally link here
+
+    // 3) Send event, then redirect
+    function go() {
+      let redirected = false;
+      const safeRedirect = () => {
+        if (redirected) return;
+        redirected = true;
+        window.location.href = TALLY_URL;
+      };
+
+      // Ask GA to send via 'beacon' and call us back when sent
+      gtag('event', 'qr_scan', {
+        poster: POSTER,
+        transport_type: 'beacon',
+        event_callback: safeRedirect
+      });
+
+      // Fallback redirect in case callback never fires (weak signal, adblockers, etc.)
+      setTimeout(safeRedirect, 800);
+    }
+
+    // Run as soon as the page is interactive
+    document.addEventListener('DOMContentLoaded', go);
+  </script>
+
+  <style>
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; padding: 24px; }
+  </style>
+</head>
+<body>
+  <h1>Loading your guide…</h1>
+  <p>If you’re not redirected automatically, <a href="#" onclick="event.preventDefault(); go();">click here</a>.</p>
+</body>
+</html>
